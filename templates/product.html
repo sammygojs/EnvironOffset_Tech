@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product page</title>
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/layout.css') }}">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .blur-background {
+            position: relative;
+            z-index: 1;
+        }
+
+        .blur-background::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('{{ url_for('static', filename='images/solarPanels.jpg') }}');
+            background-size: cover;
+            background-position: center;
+            filter: blur(8px);
+            opacity: 0.5;
+            z-index: -1;
+        }
+    </style>
+</head>
+
+<body class="blur-background">
+    <section>
+        <div class="z-10 md:flex items-start justify-center py-12 2xl:px-20 md:px-6 px-4">
+            <img src="https://www.worldometers.info/img/flags/{{ product.name[:2].lower() }}-flag.gif" alt="Flag">
+            <div class="xl:w-2/5 md:w-1/2 lg:ml-8 md:ml-6 md:mt-0 mt-6 bg-gray-100 rounded-2xl p-6">
+                <div class="border-b border-gray-200 pb-6">
+                    <h1 class="lg:text-2xl text-xl font-semibold lg:leading-6 leading-7 text-gray-800 dark:text-white mt-2">{{product.name}}</h1>
+                </div>
+                <a href="/">
+                    <button type="submit" name="addToCart" value="value" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded shadow">Login to invest</button>
+                </a>
+                <div class="text-3xl">
+                    <p class="text-base leading-4 mt-7 text-gray-600 dark:text-gray-300"><strong>Description:</strong> {{ product.description }}</p>
+                    <p class="text-base leading-4 mt-7 text-gray-600 dark:text-gray-300"><strong>Price:</strong> £ {{ product.price }}</p>
+                    <p class="text-base leading-4 mt-7 text-gray-600 dark:text-gray-300"><strong>Country:</strong> {{ product.country }}</p>
+                    <p class="text-base leading-4 mt-7 text-gray-600 dark:text-gray-300"><strong>Population:</strong> {{ product.population }} M</p>
+                    <p class="text-base leading-4 mt-7 text-gray-600 dark:text-gray-300"><strong>Impact:</strong> {{ product.impact }}</p>
+                    <p class="text-base leading-4 mt-7 text-gray-600 dark:text-gray-300"><strong>Energy Production:</strong> {{ product.energy_production }} kWh/day</p>
+                    <p class="text-base leading-4 mt-7 text-gray-600 dark:text-gray-300"><strong>Time to Recover Expense:</strong> {{ product.time_to_recover_expense }} days</p>
+                    <p class="text-base leading-4 mt-7 text-gray-600 dark:text-gray-300"><strong>Carbon Offset Per Year:</strong> {{ product.carbon_offset_per_year }} tons</p>
+                </div>
+                <!-- <a href="/user/home" class="text-blue-500 hover:text-blue-600 font-bold p-18">Go to Home</a> -->
+                <a href="/">
+                    <button type="submit" name="addToCart" value="value" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 mt-8 rounded shadow">Go back</button>
+                </a>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
