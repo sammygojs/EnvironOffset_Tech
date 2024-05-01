@@ -213,17 +213,17 @@ data = [
         "description": "Egypt grapples with a high grid carbon intensity of 475 gCO2eq/kWh and a substantial cost of solar at $1775/kWp. However, it boasts a high potential solar generation of 1986 kWh per kWp per year. Despite a population of 114.4 million, all households have electricity access, although frequent blackouts occur."
     
     },
-    {
-        "name": "South Africa",
-        "grid carbon intensity (gCO2eq/kWh)": 866,
-        "cost of solar (US$/kWp)": 1132,
-        "potential solar generation (kWh per kWp per year)": 1869,
-        "population (millions)": 59.4,
-        "households without access to electricity (%)": 10.4,
-        "extra information": "an estimated 43% of South African households are too poor to meet their basic energy needs",
-        "flag_url": "",
-        "description": "South Africa faces significant environmental challenges with a very high grid carbon intensity of 866 gCO2eq/kWh. It features moderate solar installation costs at $1132/kWp and high potential solar generation of 1869 kWh per kWp per year. With a population of 59.4 million, approximately 10.4%"
-    }
+    # {
+    #     "name": "South Africa",
+    #     "grid carbon intensity (gCO2eq/kWh)": 866,
+    #     "cost of solar (US$/kWp)": 1132,
+    #     "potential solar generation (kWh per kWp per year)": 1869,
+    #     "population (millions)": 59.4,
+    #     "households without access to electricity (%)": 10.4,
+    #     "extra information": "an estimated 43% of South African households are too poor to meet their basic energy needs",
+    #     "flag_url": "",
+    #     "description": "South Africa faces significant environmental challenges with a very high grid carbon intensity of 866 gCO2eq/kWh. It features moderate solar installation costs at $1132/kWp and high potential solar generation of 1869 kWh per kWp per year. With a population of 59.4 million, approximately 10.4%"
+    # }
 ]
 
 # Convert JSON data to Product instances
@@ -1068,8 +1068,9 @@ def order_Success():
 @app.route("/user/product/<int:id>",methods=['POST','GET'])
 def productPage(id):
     product = Product().query.filter_by(id=id).first()
+    userId=session.get('user_id')
+    user = User().query.filter_by(id=userId).first()
     if request.method == 'POST':
-        userId=session.get('user_id')
         cart_to_update = Cart().query.filter_by(user_id=userId,product_id=id).first()
         if cart_to_update:
             cart_to_update.quantity+=1
@@ -1083,30 +1084,13 @@ def productPage(id):
             db.session.add(cartToBeAdded)
             db.session.commit()
             return redirect(url_for('userCart'))
-            # return render_template('user/product.html',product=product)
     else:
-        
         product = Product().query.filter_by(id=id).first()
-        return render_template('user/product.html',product=product)
+        return render_template('user/product.html',product=product,user=user)
     
 @app.route("/product/<int:id>",methods=['POST','GET'])
 def productPageWithoutLogin(id):
     product = Product().query.filter_by(id=id).first()
-    # if request.method == 'POST':
-    #     userId=session.get('user_id')
-    #     cart_to_update = Cart().query.filter_by(user_id=userId,product_id=id).first()
-    #     if cart_to_update:
-    #         cart_to_update.quantity+=1
-    #         db.session.add(cart_to_update)
-    #         db.session.commit()
-
-    #         return render_template('product.html',product=product)
-    #     else:
-    #         cartToBeAdded = Cart(user_id=userId, product_id=id, quantity=1)
-    #         db.session.add(cartToBeAdded)
-    #         db.session.commit()
-    #         return render_template('product.html',product=product)
-    # else:
         
     product = Product().query.filter_by(id=id).first()
     return render_template('product.html',product=product)

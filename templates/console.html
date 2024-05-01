@@ -14,24 +14,24 @@
       </h1>
       {% endif %}
       <div class="w-1/2 p-4 flex">
-        <form action="{{ url_for('products_homepage') }}" method="GET">
+        <!-- <form action="{{ url_for('products_homepage') }}" method="GET">
           <div class="mb-2">
             <select onchange="window.location.href=this.value" id="sort_by"
-              class="font-semibold bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              class="font-semibold bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 gray-700 :borgray-600 :placeho-gray-400 :text-white us:ring-blue :focus:border-blue-5
               <option class="font-semibold" value="{{ url_for('products_homepage', sort_by='asc') }}" {% if sort_by=='asc'
                 %}selected{% endif %}>Sort Ascending</option>
               <option class="font-semibold" value="{{ url_for('products_homepage', sort_by='desc') }}" {% if sort_by=='desc'
                 %}selected{% endif %}>Sort Descending</option>
             </select>
           </div>
-        </form>
+        </form> -->
         
         &nbsp&nbsp&nbsp
         
         <div class="flex gap-4">
           <div class="relative">
             <details
-              class="group [&_summary::-webkit-details-marker]:hidden font-semibold bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              class="group [&_summary::-webkit-details-marker]:hidden font-semibold bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 gray-700 :borgray-600 :placeho-gray-400 :text-white us:ring-blue :focus:border-blue-5
               <summary class="">
                 <span class="text-sm font-medium"> Filter price </span>
               </summary>
@@ -80,7 +80,7 @@
         <div class="flex gap-4">
           <div class="relative">
             <details
-              class="group [&_summary::-webkit-details-marker]:hidden font-semibold bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              class="group [&_summary::-webkit-details-marker]:hidden font-semibold bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 gray-700 :borgray-600 :placeho-gray-400 :text-white us:ring-blue :focus:border-blue-5
               <summary class="">
                 <span class="text-sm font-medium"> Filter size </span>
               </summary>
@@ -130,7 +130,7 @@
       </div>
       <form action="/compare" method="post" id="productForm">
         <button
-          class="group [&_summary::-webkit-details-marker]:hidden font-semibold bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mb-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          class="group [&_summary::-webkit-details-marker]:hidden font-semibold bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mb-2 gray-700 :borgray-600 :placeho-gray-400 :text-white us:ring-blue :focus:border-blue-5
           type="submit">Compare Selected Products</button>
         <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-3">
 

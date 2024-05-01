@@ -91,16 +91,16 @@
                     {% endif %}
                 </div>                
             </button>
-            <ul class="dropdown-menu shadow-md shadow-black/5 z-30 hidden py-1.5 rounded-md bg-white border border-gray-100 w-full max-w-[140px]">
+            <ul class="dropdown-menu text-white bg-gray-700 border border-gray-600 mt-1 absolute hidden group-hover:block">
                 <li>
-                    <a href="/user/update_profile" class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-[#f84525] hover:bg-gray-50">Update profile</a>
+                    <a href="/user/update_profile" class="text-sm block px-4 py-2 hover:bg-gray-600 hover:border-b-2 border-yellow-300">Update profile</a>
                 </li>
                 <li>
-                    <a href="/user/forgotPassword" class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-[#f84525] hover:bg-gray-50">Forgot password</a>
+                    <a href="/user/forgotPassword" class="text-sm block px-4 py-2 hover:bg-gray-600 hover:border-b-2 border-yellow-300">Forgot password</a>
                 </li>
                 <li>
                     <form action="/logout">
-                        <a href="/logout" role="menuitem" class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-[#f84525] hover:bg-gray-50 cursor-pointer"
+                        <a href="/logout" role="menuitem" class="text-sm block px-4 py-2 hover:bg-gray-600 hover:border-b-2 border-yellow-300"
                             onclick="event.preventDefault();
                             this.closest('form').submit();">
                             Log Out

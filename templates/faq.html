@@ -34,11 +34,12 @@
     </style>
 </head>
 
-<body class="text-gray-800 font-inter bg-cover bg-fixed bg-center" style="background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('{{ url_for('static', filename='images/SolarPanels.jpg') }}')">">
+<body class="text-gray-800 font-inter bg-cover bg-center items-center" style="background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('{{ url_for('static', filename='images/SolarPanels.jpg') }}')">">
 
     {% include 'header.html' %}
+    <main class="w-full md:mt-24 min-h-screen transition-all main">
     <!-- FAQ Section -->
-    <section class=" flex flex-col justify-center bg-cover p-5">
+    <!-- <section class=" flex flex-col justify-center bg-cover p-5"> -->
         <div class="container mx-auto">
             <h2 class="text-3xl font-bold mb-8 text-white mt-10 text-center">Frequently Asked Questions</h2>
 
@@ -96,6 +97,9 @@
 
             </div>
         </div>
-    </section>
+    <!-- </section> -->
+</main>
 </body>
+<script src=" https://unpkg.com/@popperjs/core@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </html>

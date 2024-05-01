@@ -6,26 +6,8 @@
                 EnviroOffset Tech</div>
         </div>
         <div class="space-x-4">
-            <!-- <a href="/admin/dashboard"
-                class="font-semibold text-white hover:text-yellow-300 hover:border-b-2 border-yellow-300">Dashboard</a> -->
-            <div class="inline-block font-semibold text-white group">
-                <button class="flex items-center hover:text-yellow-300">
-                    Accounts
-                    <svg class="fill-current h-4 w-4 transform group-hover:rotate-180 
-                            transition duration-150 ease-in-out" xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20">
-                        <path d="M5.859 12.66l4.141-4.27 4.141 4.27H5.859z" />
-                    </svg>
-                </button>
-                <div class="absolute hidden group-hover:block text-white bg-gray-700 border border-gray-600 mt-1">
-                    <a href="/admin/allUsers"
-                        class="block px-4 py-2 hover:bg-gray-600 hover:border-b-2 border-yellow-300">Users</a>
-                    <a href="/admin/allStaff"
-                        class="block px-4 py-2 hover:bg-gray-600 hover:border-b-2 border-yellow-300">Staff</a>
-                    <a href="/admin/allAdmin"
-                        class="block px-4 py-2 hover:bg-gray-600 hover:border-b-2 border-yellow-300">Admin</a>
-                </div>
-            </div>
+            <a href="/admin/dashboard"
+                class="font-semibold text-white hover:text-yellow-300 hover:border-b-2 border-yellow-300">Dashboard</a>
             <div class="inline-block font-semibold text-white group">
                 <button class="flex items-center hover:text-yellow-300">
                     Manage Accounts
@@ -35,7 +17,25 @@
                         <path d="M5.859 12.66l4.141-4.27 4.141 4.27H5.859z" />
                     </svg>
                 </button>
-                <div class="absolute hidden group-hover:block text-white bg-gray-700 border border-gray-600 mt-1">
+                <div class="absolute hidden group-hover:block text-white bg-gray-700 border border-gray-600">
+                    <a href="/admin/allUsers"
+                        class="block px-4 py-2 hover:bg-gray-600 hover:border-b-2 border-yellow-300 w-36">Users</a>
+                    <a href="/admin/allStaff"
+                        class="block px-4 py-2 hover:bg-gray-600 hover:border-b-2 border-yellow-300 w-36">Staff</a>
+                    <a href="/admin/allAdmin"
+                        class="block px-4 py-2 hover:bg-gray-600 hover:border-b-2 border-yellow-300 w-36">Admin</a>
+                </div>
+            </div>
+            <div class="inline-block font-semibold text-white group">
+                <button class="flex items-center hover:text-yellow-300">
+                    Add Account
+                    <svg class="fill-current h-4 w-4 transform group-hover:rotate-180 
+                            transition duration-150 ease-in-out" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20">
+                        <path d="M5.859 12.66l4.141-4.27 4.141 4.27H5.859z" />
+                    </svg>
+                </button>
+                <div class="absolute hidden group-hover:block text-white bg-gray-700 border border-gray-600">
                     <a href="/admin/addUser"
                         class="block px-4 py-2 hover:bg-gray-600 hover:border-b-2 border-yellow-300">Add Users</a>
                     <a href="/admin/addStaff"
@@ -70,21 +70,21 @@
                 </div>
             </button>
             <ul
-                class="dropdown-menu shadow-md shadow-black/5 z-30 hidden py-1.5 rounded-md bg-white border border-gray-100 w-full max-w-[140px]">
+                class="dropdown-menu text-white bg-gray-700 border border-gray-600 mt-1 absolute hidden group-hover:block">
                 <li>
                     <a href="/admin/update_profile"
-                        class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-[#f84525] hover:bg-gray-50">Update
+                        class="text-sm block px-4 py-2 hover:bg-gray-600 hover:border-b-2 border-yellow-300">Update
                         profile</a>
                 </li>
                 <li>
                     <a href="/user/forgotPassword"
-                        class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-[#f84525] hover:bg-gray-50">Forgot
+                        class="text-sm block px-4 py-2 hover:bg-gray-600 hover:border-b-2 border-yellow-300">Forgot
                         password</a>
                 </li>
                 <li>
                     <form action="/logout">
                         <a href="/logout" role="menuitem"
-                            class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-[#f84525] hover:bg-gray-50 cursor-pointer"
+                            class="text-sm block px-4 py-2 hover:bg-gray-600 hover:border-b-2 border-yellow-300"
                             onclick="event.preventDefault();
                             this.closest('form').submit();">
                             Log Out

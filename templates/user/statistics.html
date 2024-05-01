@@ -392,14 +392,14 @@
                         <p class="font-normal text-gray-700 dark:text-gray-400">Your Own Contribution</p>
                         {% if user %}
                         {% if user.total_contribution == None %}
-                        <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">GBP
+                        <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">£
                             0</h5>
                         {% else %}
-                        <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">GBP
+                        <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">£
                             {{user.total_contribution}}</h5>
                         {% endif %}
                         {% else %}
-                        <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">GBP MOCK
+                        <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">£ MOCK
                             DATA</h5>
                         {% endif %}
                     </a>
@@ -1154,60 +1154,82 @@
     var map;  // 全局变量来引用地图实例
 
     function initMap() {
-        // 创建一个初始的空地图，等待国家数据加载后再定位
+        // 创建一个初始的空地图
         map = new google.maps.Map(document.getElementById('map'), {
             zoom: 2,
             center: { lat: 0, lng: 0 }
         });
 
-        // 从服务器获取国家信息，并使用Google Maps Geocoding API 定位
+        // 固定国家列表及其CO2等级
+        const countries = {
+            "Russia": 900,
+            "China": 800,
+            "USA": 700,
+            "Brazil": 650,
+            "Australia": 600,
+            "India": 500,
+
+            "Egypt": 400,
+            "Germany": 320,
+            "France": 300,
+            "Uk":280,
+            "Italy":260,
+            "Japan":220,
+            "Spain":150,
+            "Nigeria":100,
+
+   };
+
+        // 添加固定国家的标记
+        Object.keys(countries).forEach(country => {
+            addMarkerForCountry(country, countries[country]);
+        });
+
+        // 获取并处理用户所在国家
+        fetchUserCountry(countries);
+    }
+
+    function fetchUserCountry(countries) {
         fetch('/user/statsticofcountry')
             .then(response => response.json())
             .then(data => {
                 if (data.error) {
                     document.getElementById('countryInfo').textContent = 'Error: ' + data.error;
                 } else {
-                    // 使用随机生成的grid carbon intensity值
-                    var randomCarbonIntensity = getRandomIntensity(200, 1000);
-                    centerMapOnCountry(data.country, randomCarbonIntensity);
+                    if (countries.hasOwnProperty(data.country)) {
+                        addMarkerForCountry(data.country, countries[data.country], true);
+                    } else {
+                        document.getElementById('countryInfo').textContent = `No data available for ${data.country}`;
+                    }
                 }
             })
             .catch(error => console.error('Fetch error:', error));
     }
 
-    function centerMapOnCountry(country, carbonIntensity) {
+    function addMarkerForCountry(country, carbonIntensity, zoomIn=false) {
         var geocoder = new google.maps.Geocoder();
         geocoder.geocode({ 'address': country }, function (results, status) {
             if (status === google.maps.GeocoderStatus.OK) {
-                // 重新定位地图到国家中心
-                map.setCenter(results[0].geometry.location);
-                map.setZoom(5);  // 设置一个更为详细的缩放级别
-
-                // 添加一个标记在国家的中心
+                var location = results[0].geometry.location;
                 var marker = new google.maps.Marker({
                     map: map,
-                    position: results[0].geometry.location
+                    position: location
                 });
-
-                // 创建一个信息窗口，显示grid carbon intensity
                 var infoWindow = new google.maps.InfoWindow({
                     content: 'Grid Carbon Intensity: ' + carbonIntensity + ' gCO2eq/kWh'
                 });
-
-                // 添加点击标记后显示信息窗口的事件监听
                 marker.addListener('click', function () {
                     infoWindow.open(map, marker);
                 });
 
+                if (zoomIn) {
+                    map.setCenter(location);
+                    map.setZoom(5);
+                }
             } else {
                 document.getElementById('countryInfo').textContent = 'Geocode was not successful for the following reason: ' + status;
             }
         });
-    }
-
-    // 生成一个介于 min 和 max 之间的随机数
-    function getRandomIntensity(min, max) {
-        return Math.floor(Math.random() * (max - min + 1) + min);
     }
 
     // 初始化地图
